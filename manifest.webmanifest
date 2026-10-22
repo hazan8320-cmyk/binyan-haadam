@@ -1,0 +1,111 @@
+{
+ "id": "./",
+ "name": "בניין האדם",
+ "short_name": "בניין האדם",
+ "description": "מערכת לבניה וצמיחה אישית מ״עַיִר פרא״ לאדם גדול: דמות שנבנית במעשים, אלף מעשים בחודש, יומן ולוח שנה עברי. עובדת גם בלי אינטרנט.",
+ "lang": "he",
+ "dir": "rtl",
+ "start_url": "./",
+ "scope": "./",
+ "display": "standalone",
+ "display_override": [
+  "standalone",
+  "minimal-ui"
+ ],
+ "background_color": "#f6f2ec",
+ "theme_color": "#f6f2ec",
+ "orientation": "any",
+ "categories": [
+  "productivity",
+  "lifestyle",
+  "education"
+ ],
+ "icons": [
+  {
+   "src": "icons/icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "icons/icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "icons/maskable-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "maskable"
+  },
+  {
+   "src": "icons/maskable-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  },
+  {
+   "src": "icons/icon.svg",
+   "sizes": "any",
+   "type": "image/svg+xml",
+   "purpose": "any"
+  }
+ ],
+ "shortcuts": [
+  {
+   "name": "דיווח על מעשה",
+   "short_name": "דיווח",
+   "description": "״כמה בניתי היום״ — מעשה אחד, בלחיצה",
+   "url": "./?action=report",
+   "icons": [
+    {
+     "src": "icons/icon-192.png",
+     "sizes": "192x192",
+     "type": "image/png"
+    }
+   ]
+  },
+  {
+   "name": "שתי דקות לסימון היעד",
+   "short_name": "שתי דקות",
+   "url": "./?action=twomin",
+   "icons": [
+    {
+     "src": "icons/icon-192.png",
+     "sizes": "192x192",
+     "type": "image/png"
+    }
+   ]
+  },
+  {
+   "name": "היומן שלי",
+   "short_name": "היומן",
+   "url": "./?action=journal",
+   "icons": [
+    {
+     "src": "icons/icon-192.png",
+     "sizes": "192x192",
+     "type": "image/png"
+    }
+   ]
+  }
+ ],
+ "screenshots": [
+  {
+   "src": "screenshots/wide-light.png",
+   "sizes": "1280x800",
+   "type": "image/png",
+   "form_factor": "wide",
+   "label": "הדמות שנבנית במעשים — במואר"
+  },
+  {
+   "src": "screenshots/wide-dark.png",
+   "sizes": "1280x800",
+   "type": "image/png",
+   "form_factor": "wide",
+   "label": "אותה דמות — בחושך"
+  }
+ ],
+ "prefer_related_applications": false
+}
