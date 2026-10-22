@@ -16373,6 +16373,8 @@ body.reduce .v89-update{transition:none}
 .achievement.is-clean .achievement-top:has(> .v89-undo){grid-template-columns:auto minmax(0,1fr) auto auto}
 .achievement-top > .v89-undo{align-self:start;margin-top:3px!important;margin-inline-start:0!important}
 .achievement-top > .v89-undo + #dismissreward,.achievement-top:has(> .v89-undo) #dismissreward{margin-inline-start:0}
+.v89-app-url{display:block;margin-top:2px;font:600 .75rem/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--m-deep);letter-spacing:0;text-align:right;direction:ltr;unicode-bidi:isolate}
+body.dark .v89-app-url{color:var(--m-light)}
 </style><script id="v89">/* V89 · the critical list of V85, as the owner marked it (22.10): 1 · 2 · 3 · 4 · 5 · 6 — and the safety net of 10.
    Every part here guards the person's own words and numbers: nothing he wrote is lost by a way out of a window, a backup never
    replaces what he has without a copy that was checked, two windows never erase each other's deeds, every report can be taken
@@ -16651,7 +16653,9 @@ V.peekText=(name,el)=>{const v=realOf(el);const head=name?esc(String(name).trim(
 const App=V.App={deferred:null};
 const standalone=()=>safe(()=>matchMedia('(display-mode: standalone)').matches||matchMedia('(display-mode: window-controls-overlay)').matches||navigator.standalone===true)||false;
 const hosted=()=>/^https?:$/.test(location.protocol);
-const appUrl=()=>((document.querySelector('meta[name="binyan-app-url"]')||{}).content||'').trim();
+// the site of the application (GitHub Pages, opened by the owner on 22.10.2026); a meta of the page can name another
+const APP_SITE='https://hazan8320-cmyk.github.io/binyan-haadam/';
+const appUrl=()=>((document.querySelector('meta[name="binyan-app-url"]')||{}).content||'').trim()||APP_SITE;
 App.standalone=standalone;App.hosted=hosted;
 addEventListener('beforeinstallprompt',e=>{e.preventDefault();App.deferred=e;safe(paintAppRow)});
 addEventListener('appinstalled',()=>{App.deferred=null;safe(paintAppRow);safe(()=>toast('בניין האדם הותקן — מעכשיו הוא נפתח בחלון משלו, מהסמל שלו'))});
@@ -16706,7 +16710,7 @@ function appWindow(push){const why=`<ul class="v89-app-why"><li><b>חלון מש
  else if(hosted()){const b=browser();body=`<div class="v89-app-state"><b>${b==='firefox'?'פיירפוקס במחשב אינו מתקין אפליקציות של אתרים.':'איך מתקינים בדפדפן הזה:'}</b><p>${b==='edge'?'בשורת הכתובת, בקצה — הסמל של חלון עם פלוס (״אפליקציה זמינה״) ← ״התקנה״. או בתפריט ‏⋯ ← ״אפליקציות״ ← ״התקנת האתר הזה כאפליקציה״.':b==='chrome'?'בשורת הכתובת, בקצה — הסמל של מסך עם חץ (״התקנה״). או בתפריט ⋮ ← ״העברה, שיתוף ושמירה״ ← ״התקנת הדף כאפליקציה…״.':b==='safari'?'בתפריט ״קובץ״ ← ״הוספה ל־Dock…״.':'כדאי לפתוח את הכתובת הזו ב־Chrome או ב־Edge, ושם — ״התקנה״ בשורת הכתובת.'}</p>${b==='firefox'?'<p>כדאי לפתוח את הכתובת הזו ב־Chrome או ב־Edge, ושם — ״התקנה״ בשורת הכתובת.</p>':''}</div>`}
  else body=`<div class="v89-app-state"><b>הקובץ הזה נפתח מהמחשב — ומקובץ לא מתקינים אפליקציה.</b><p>ההתקנה נעשית מהאתר של בניין האדם, פעם אחת, בשלושה צעדים:</p></div>
 <ol class="v89-app-steps"><li><b>העברת הנתונים</b><span>קובץ אחד עם כל מה שיש כאן — הבניין, היומן, ניהול הלילה וההסברים.</span><button type="button" class="small" id="v89export">הורדת קובץ ההעברה</button></li>
-<li><b>פתיחת האתר</b><span>${url?'האתר נפתח בלשונית חדשה, ומבקש את הקובץ שירד עכשיו.':'הכתובת של האתר תופיע כאן כשהוא יעלה לאוויר.'}</span>${url?'<button type="button" class="small" id="v89open">פתיחת האתר</button>':''}</li>
+<li><b>פתיחת האתר</b><span>${url?`האתר נפתח בלשונית חדשה, ומבקש את הקובץ שירד עכשיו.<bdi class="v89-app-url" dir="ltr">${esc(url.replace(/^https?:\/\//,'').replace(/\/$/,''))}</bdi>`:'הכתובת של האתר תופיע כאן כשהוא יעלה לאוויר.'}</span>${url?'<button type="button" class="small" id="v89open">פתיחת האתר</button>':''}</li>
 <li><b>התקנה</b><span>באתר: הגדרות ← ״התקנה כאפליקציה״ ← ״התקנת בניין האדם״. מעכשיו עובדים באפליקציה; הקובץ שבמחשב נשאר כמו שהוא.</span></li></ol>`;
  openModal('התקנה כאפליקציה',`<div class="v89-app"><div class="v89-app-hero"><span class="v89-app-icon">${APP_ICON}</span><span><b>בניין האדם</b><small>אפליקציה למחשב · Windows ו־Mac</small></span></div>${why}${body}</div>`,()=>{
   const ins=$('#v89install');if(ins)ins.onclick=async()=>{const d=App.deferred;if(!d)return;ins.disabled=true;try{await d.prompt();const c=await d.userChoice;App.deferred=null;if(c&&c.outcome==='accepted'){closeModal()}else{ins.textContent='אפשר להתקין בכל עת — מהסמל שבשורת הכתובת';}}catch(e){V.log&&V.log(e,'install');ins.disabled=false}};
