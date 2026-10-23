@@ -1,6 +1,6 @@
 /* בניין האדם · the service worker: the whole program kept on the computer, so it opens at once and works without internet.
    A new version (a new build of index.html) waits until the person chooses "עדכון עכשיו" — never in the middle of his work. */
-const BUILD='6013301a2412';const CACHE='binyan-haadam-'+BUILD;
+const BUILD='d1e85c8fe91c';const CACHE='binyan-haadam-'+BUILD;
 const CORE=["./", "index.html", "manifest.webmanifest", "icons/apple-touch-icon.png", "icons/favicon-32.png", "icons/favicon-48.png", "icons/icon-192.png", "icons/icon-512.png", "icons/icon.svg", "icons/maskable-192.png", "icons/maskable-512.png"];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE.map(u=>new Request(u,{cache:'reload'})))))});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k.startsWith('binyan-haadam-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
