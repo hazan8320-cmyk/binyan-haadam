@@ -3,7 +3,7 @@
    V101 · 67 — the reminders with the program closed: the owner's server wakes this worker at the minute (an empty push, no word in
    it); the worker reads from the computer itself what rings now and shows it. Another person on this computer sees only that there
    is a reminder for someone. When the program is in front, its own card is enough. */
-const BUILD='c968deaf7977';const CACHE='binyan-haadam-'+BUILD;
+const BUILD='f2eb1b855f23';const CACHE='binyan-haadam-'+BUILD;
 const CORE=["./", "index.html", "manifest.webmanifest", "icons/apple-touch-icon.png", "icons/favicon-32.png", "icons/favicon-48.png", "icons/icon-192.png", "icons/icon-512.png", "icons/icon.svg", "icons/maskable-192.png", "icons/maskable-512.png"];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE.map(u=>new Request(u,{cache:'reload'})))))});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k.startsWith('binyan-haadam-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
