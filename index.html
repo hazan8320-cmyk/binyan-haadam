@@ -44492,13 +44492,13 @@ const Knowledge = (() => {
     return `<section class="kb-back" aria-label="מאחורי הקלעים">
   <div class="kb-back-head"><span class="eyebrow">מאחורי הקלעים</span><h3>מה שלא רואים על המסך</h3><p>${esc(b.lead || '')}</p></div>
   <nav class="kb-bnav" aria-label="הפרקים"><ul>${CHAPTERS.map(([id, t]) => `<li><button type="button" data-kb-ch="${id}">${esc(t)}</button></li>`).join('')}</ul></nav>
-  ${ch('nums', 1, 'במספרים', `<div class="kb-facts">${(b.facts || []).map(fact).join('')}</div>`, 'שאלה — ולחיצה חושפת את המספר האמיתי.')}
+  ${ch('nums', 1, 'במספרים', `<div class="kb-facts">${(b.facts || []).filter(f => !f.live || live[f.live] > 0).map(fact).join('')}</div>`, 'שאלה — ולחיצה חושפת את המספר האמיתי.')}
   ${ch('letters', 2, 'מההתכתבות', `<div class="kb-letters">${(b.letters || []).map(l => `<figure class="kb-letter"><figcaption>הכותב${l.v ? ` · גרסה ${esc(l.v)}` : ''}</figcaption><blockquote>״${esc(l.text)}״</blockquote><p class="kb-reply"><span>הבונה</span>${esc(l.reply)}</p></figure>`).join('')}</div>`, 'הכותב כותב לבונה, במילים שלו — ומה קרה מאז.')}
   ${road ? ch('road', 3, 'הדרך', `<ol class="kb-road">${road}</ol>`, 'מגרסה 9 ועד היום — התחנות שבהן התוכנה השתנתה באמת.') : ''}
   ${no ? ch('no', 4, 'מה נדחה — ולמה', `<div class="kb-nos">${no}</div>`, 'כל רעיון שהוצע ולא נכנס נשמר כאן עם הסיבה — כדי שלא יוצע שוב בלי סיבה חדשה.') : ''}
   ${ch('slips', 5, 'פשלות בדרך', `<ul class="kb-slips">${(b.slips || []).map(x => `<li>${esc(x)}</li>`).join('')}</ul>`)}
   ${ch('next', 6, 'מה הלאה', `<div class="kb-back-side">${b.pen ? fact({id: 'pen', q: b.pen.q, after: b.pen.a}) : ''}${b.next ? `<div class="kb-next"><span class="eyebrow">הרעיון הבא, אי״ה</span><b>${esc(b.next.title)}</b><p>${esc(b.next.text)}</p><button type="button" class="quiet small" data-kb-next>לפרטים — ב״למתקדמים״</button></div>` : ''}${b.coming ? `<div class="kb-next kb-coming"><span class="eyebrow">${esc(b.coming.eyebrow || 'ומה עוד?')}</span><b>${esc(b.coming.title)}</b><p>${esc(b.coming.text)}</p></div>` : ''}</div>`)}
-  ${ch('archive', 7, 'הארכיון', `<button type="button" class="kb-arch-open" data-kb-arch aria-expanded="false"><span><b>הארכיון המלא</b><small>${N(archiveCount)} פריטים — הכללים, ההוראות לבונה, מה עוד פתוח, והגרסאות · עם חיפוש</small></span><i class="ic" style="--ic:var(--ic-chevron-left)" aria-hidden="true"></i></button>`)}
+  ${ch('archive', 7, 'הארכיון', `<button type="button" class="kb-arch-open" data-kb-arch aria-expanded="false"><span><b>הארכיון המלא</b><small>${N(archiveCount)} פריטים — ${esc(cats().filter(c => backCat(c) && of(c.id).length).map(c => c.title).join(' · '))} · עם חיפוש</small></span><i class="ic" style="--ic:var(--ic-chevron-left)" aria-hidden="true"></i></button>`)}
  </section>`;
   }
   // the topics of the store as cards, when nothing is chosen and nothing is asked (as a help centre opens on its topics)
