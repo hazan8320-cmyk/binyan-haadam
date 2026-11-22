@@ -80,7 +80,7 @@
   },
   {
    "name": "הפנקס שלי",
-   "short_name": "היומן",
+   "short_name": "הפנקס",
    "url": "./?action=journal",
    "icons": [
     {
